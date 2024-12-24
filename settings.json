@@ -1,0 +1,30 @@
+{
+    "files.autoSave": "onWindowChange",
+    "editor.cursorSmoothCaretAnimation": "on",
+    "editor.cursorBlinking": "phase",
+    "editor.maxTokenizationLineLength": 200000,
+    "fluent-ui-vscode.enableWallpaper": true,
+    "workbench.colorCustomizations": {
+        "terminal.background": "#00000000"
+    },
+    "workbench.settings.applyToAllProfiles": [
+        "workbench.colorCustomizations"
+    ],
+    "window.titleBarStyle": "custom",
+    "vscode_vibrancy.enableAutoTheme": true,
+    "vscode_vibrancy.opacity": -1,
+    "window.restoreFullscreen": true,
+    "window.newWindowDimensions": "maximized",
+    "glassit.alpha": 225,
+    "git.enableSmartCommit": true,
+    "git.confirmSync": false,
+    "git.autofetch": true,
+    "[python]": {
+        "diffEditor.ignoreTrimWhitespace": true
+    },
+    "explorer.confirmPasteNative": false,
+    "workbench.colorTheme": "Dracula Theme",
+    "terminal.integrated.defaultProfile.windows": "Git Bash",
+    "github.copilot.editor.enableAutoCompletions": false,
+    "chat.editing.alwaysSaveWithGeneratedChanges": true
+}
