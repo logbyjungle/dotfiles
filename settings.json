@@ -16,6 +16,13 @@
   "remove_trailing_whitespace_on_save": false,
   "extend_comment_on_newline": false,
   "format_on_save": "on",
+  "terminal": {
+    "copy_on_select": true,
+    "line_height":"standard",
+    "toolbar": {
+      "breadcrumbs": false
+    }
+  },
   "show_whitespaces": "selection",
   "theme": {
     "mode": "system",
