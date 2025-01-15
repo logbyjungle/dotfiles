@@ -55,6 +55,7 @@
       "delete": "editor::Delete",
       "tab": "editor::Tab",
       "shift-tab": "editor::TabPrev",
+      "ctrl-k": null,
       // "ctrl-t": "editor::Transpose",
       "ctrl-backspace": "editor::DeleteToPreviousWordStart",
       "ctrl-delete": "editor::DeleteToNextWordEnd",
@@ -379,7 +380,7 @@
       "ctrl-alt-y": "workspace::CloseAllDocks",
       "ctrl-shift-f": "pane::DeploySearch",
       "ctrl-shift-h": ["pane::DeploySearch", { "replace_enabled": true }],
-      "ctrl-t": "project_symbols::Toggle",
+      // "ctrl-t": "project_symbols::Toggle",
       "ctrl-p": "file_finder::Toggle",
       "ctrl-e": "file_finder::Toggle",
       "ctrl-shift-p": "command_palette::Toggle",
@@ -664,42 +665,6 @@
       "ctrl-up": "menu::SelectPrev",
       "ctrl-down": "menu::SelectNext",
       "ctrl-backspace": "tab_switcher::CloseSelectedItem"
-    }
-  },
-  {
-    "context": "Terminal",
-    "bindings": {
-      "ctrl-insert": "terminal::Copy",
-      "shift-insert": "terminal::Paste",
-      "ctrl-enter": "assistant::InlineAssist",
-      // Overrides for conflicting keybindings
-      "ctrl-w": ["terminal::SendKeystroke", "ctrl-w"],
-      "ctrl-shift-a": "editor::SelectAll",
-      "ctrl-shift-f": "buffer_search::Deploy",
-      "ctrl-shift-l": "terminal::Clear",
-      "ctrl-shift-w": "pane::CloseActiveItem",
-      "ctrl-e": ["terminal::SendKeystroke", "ctrl-e"],
-      "up": ["terminal::SendKeystroke", "up"],
-      "pageup": ["terminal::SendKeystroke", "pageup"],
-      "down": ["terminal::SendKeystroke", "down"],
-      "pagedown": ["terminal::SendKeystroke", "pagedown"],
-      "escape": ["terminal::SendKeystroke", "escape"],
-      "enter": ["terminal::SendKeystroke", "enter"],
-      "ctrl-c": ["terminal::SendKeystroke", "ctrl-c"],
-      "shift-pageup": "terminal::ScrollPageUp",
-      "shift-pagedown": "terminal::ScrollPageDown",
-      "shift-up": "terminal::ScrollLineUp",
-      "shift-down": "terminal::ScrollLineDown",
-      "shift-home": "terminal::ScrollToTop",
-      "shift-end": "terminal::ScrollToBottom"
-    }
-  },
-  {
-    // Separate block with same context so these display in context menus
-    "context": "Terminal",
-    "bindings": {
-      "ctrl-shift-c": "terminal::Copy",
-      "ctrl-shift-v": "terminal::Paste"
     }
   }
 ]
