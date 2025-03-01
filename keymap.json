@@ -56,7 +56,7 @@
       "tab": "editor::Tab",
       "shift-tab": "editor::TabPrev",
       "ctrl-k": null,
-      // "ctrl-t": "editor::Transpose",
+      "ctrl-t": null,
       "ctrl-backspace": "editor::DeleteToPreviousWordStart",
       "ctrl-delete": "editor::DeleteToNextWordEnd",
       "shift-delete": "editor::Cut",
@@ -151,7 +151,7 @@
   {
     "context": "Editor && !inline_completion",
     "bindings": {
-      "alt-\\": "editor::ShowInlineCompletion"
+      "alt-[": "editor::ShowInlineCompletion"
     }
   },
   {
@@ -246,8 +246,8 @@
   {
     "context": "Pane",
     "bindings": {
-      "ctrl-pageup": "pane::ActivatePrevItem",
-      "ctrl-pagedown": "pane::ActivateNextItem",
+      "ctrl-pagedown": "pane::ActivatePrevItem",
+      "ctrl-pageup": "pane::ActivateNextItem",
       "ctrl-shift-pageup": "pane::SwapItemLeft",
       "ctrl-shift-pagedown": "pane::SwapItemRight",
       "back": "pane::GoBack",
@@ -308,15 +308,15 @@
       "ctrl-shift-\\": "editor::MoveToEnclosingBracket",
       "ctrl-shift-[": "editor::Fold",
       "ctrl-shift-]": "editor::UnfoldLines",
-      "ctrl-k ctrl-1": ["editor::FoldAtLevel", { "level": 1 }],
-      "ctrl-k ctrl-2": ["editor::FoldAtLevel", { "level": 2 }],
-      "ctrl-k ctrl-3": ["editor::FoldAtLevel", { "level": 3 }],
-      "ctrl-k ctrl-4": ["editor::FoldAtLevel", { "level": 4 }],
-      "ctrl-k ctrl-5": ["editor::FoldAtLevel", { "level": 5 }],
-      "ctrl-k ctrl-6": ["editor::FoldAtLevel", { "level": 6 }],
-      "ctrl-k ctrl-7": ["editor::FoldAtLevel", { "level": 7 }],
-      "ctrl-k ctrl-8": ["editor::FoldAtLevel", { "level": 8 }],
-      "ctrl-k ctrl-9": ["editor::FoldAtLevel", { "level": 9 }],
+      "ctrl-u ctrl-1": ["editor::FoldAtLevel", { "level": 1 }],
+      "ctrl-u ctrl-2": ["editor::FoldAtLevel", { "level": 2 }],
+      "ctrl-u ctrl-3": ["editor::FoldAtLevel", { "level": 3 }],
+      "ctrl-u ctrl-4": ["editor::FoldAtLevel", { "level": 4 }],
+      "ctrl-u ctrl-5": ["editor::FoldAtLevel", { "level": 5 }],
+      "ctrl-u ctrl-6": ["editor::FoldAtLevel", { "level": 6 }],
+      "ctrl-u ctrl-7": ["editor::FoldAtLevel", { "level": 7 }],
+      "ctrl-u ctrl-8": ["editor::FoldAtLevel", { "level": 8 }],
+      "ctrl-u ctrl-9": ["editor::FoldAtLevel", { "level": 9 }],
       "ctrl-alt-space": "editor::ShowCompletions",
       "ctrl-.": "editor::ToggleCodeActions",
       "ctrl-\\": "pane::SplitRight",
@@ -374,13 +374,13 @@
       "alt-7": ["workspace::ActivatePane", 6],
       "alt-8": ["workspace::ActivatePane", 7],
       "alt-9": ["workspace::ActivatePane", 8],
-      "ctrl-alt-b": "workspace::ToggleRightDock",
-      "ctrl-b": "workspace::ToggleLeftDock",
+      "ctrl-b": "workspace::ToggleRightDock",
+      "ctrl-alt-b": "workspace::ToggleLeftDock",
       "ctrl-j": "workspace::ToggleBottomDock",
       "ctrl-alt-y": "workspace::CloseAllDocks",
       "ctrl-shift-f": "pane::DeploySearch",
       "ctrl-shift-h": ["pane::DeploySearch", { "replace_enabled": true }],
-      // "ctrl-t": "project_symbols::Toggle",
+      "ctrl-t": null,
       "ctrl-p": "file_finder::Toggle",
       "ctrl-e": "file_finder::Toggle",
       "ctrl-shift-p": "command_palette::Toggle",
@@ -496,7 +496,7 @@
   {
     "context": "!Terminal",
     "bindings": {
-      "ctrl-shift-c": "collab_panel::ToggleFocus"
+      "ctrl-shift-c": null
     }
   },
   {
