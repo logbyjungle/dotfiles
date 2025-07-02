@@ -8,6 +8,12 @@
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
     "ui_font_size": 16,
+    "auto_install_extensions": {
+        "catpuccin": true,
+        "dracula": true,
+        "material-icon-theme": true,
+        "tokyo-night": true
+    },
     "buffer_font_size": 14,
     "theme": {
         "mode": "dark",
