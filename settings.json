@@ -7,58 +7,184 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
-  "show_inline_completions": true,
-  "ensure_final_newline_on_save": true,
-  "vim_mode": false,
-  "ui_font_size": 13.5,
-  "buffer_font_size": 14,
-  "auto_indent_on_paste": true,
-  "autosave": "on_focus_change",
-  "cursor_shape": "bar",
-  "remove_trailing_whitespace_on_save": false,
-  "extend_comment_on_newline": false,
-  "project_panel": {
-    "dock":"right"
-  },
-  "format_on_save": "off",
-  "formatter": "prettier",
-  "terminal": {
-    "copy_on_select": true,
-    "line_height":"standard",
-    "shell" : {
-      "with_arguments": {
-        "program": "C:\\Program Files\\Git\\bin\\bash.exe",
-        "args": ["--login"]
-      }
-  },
-    "toolbar": {
-      "breadcrumbs": false
-    }
-  },
-  "show_whitespaces": "selection",
-  "theme": {
-    "mode": "system",
-    "light": "One Light",
-    "dark": "Catppuccin Macchiato"
-  },
-  "features": {
-    "inline_completion_provider": "none"
-  },
-  "ui_font_family": "JetBrains Mono",
-  "restore_on_startup": "last_session",
-  "current_line_highlight": "all",
-  "lsp": {
-    "clangd": {
-      "binary": {
-        "path": "C:\\Program Files\\LLVM\\bin\\clangd.exe",
-        "arguments": ["--function-arg-placeholders=0"]
-      }
+    "ui_font_size": 16,
+    "buffer_font_size": 14,
+    "theme": {
+        "mode": "dark",
+        "light": "One Light",
+        "dark": "Catppuccin Mocha"
     },
-    "rust-analyzer": {
-      "binary": {
-        "path": "C:\\Users\\lucam\\AppData\\Local\\Zed\\languages\\rust-analyzer\\rust-analyzer-2025-01-20\\rust-analyzer.exe",
-        "arguments": []
-      }
+    "active_pane_modifiers": {
+        "border_size": 0.0,
+        "inactive_opacity": 1.0
+    },
+    "bottom_dock_layout": "contained",
+    "icon_theme": {
+        "mode": "dark",
+        "light": "Material Icon Theme",
+        "dark": "Material Icon Theme"
+    },
+    "collaboration_panel": { "button": false },
+    "notification_panel": { "button": false },
+    "agent": { "button": false, "enabled": false, "version": "1" },
+    "debugger": { "button": false },
+    "title_bar": { "show_sign_in": false },
+    "show_edit_predictions": false,
+    "autosave": "on_focus_change",
+    "restore_on_startup": "last_session",
+    "autoscroll_on_clicks": false,
+    "auto_update": true,
+    "base_keymap": "None",
+    "buffer_font_family": "Zed Plex Mono",
+    "close_on_file_delete": false,
+    "edit_predictions_disabled_in": ["comment", "string"],
+    "current_line_highlight": "all",
+    "selection_highlight": true,
+    "lsp_highlight_debounce": 75,
+    "cursor_blink": true,
+    "cursor_shape": "bar",
+    "hide_mouse": "on_typing_and_movement",
+    "tabs": {
+        "close_position": "right",
+        "file_icons": true,
+        "git_status": false,
+        "activate_on_close": "history",
+        "show_close_button": "hover",
+        "show_diagnostics": "all"
+    },
+    "inline_code_actions": true,
+    "toolbar": {
+        "breadcrumbs": false,
+        "quick_actions": false,
+        "selections_menu": true,
+        "agent_review": true,
+        "code_actions": false
+    },
+    "enable_language_server": true,
+    "ensure_final_newline_on_save": true,
+    "lsp": {
+        "clangd": {
+            "binary": {
+                "path": "C:/msys64/ucrt64/bin/clangd.exe",
+                "arguments": [
+                    "--clang-tidy",
+                    "--background-index",
+                    "--pch-storage=memory"
+                ]
+            }
+        }
+    },
+    "format_on_save": "on",
+    "formatter": "auto",
+    "use_autoclose": true,
+    "always_treat_brackets_as_autoclosed": false,
+    "diagnostics": {
+        "include_warnings": true,
+        "inline": {
+            "enabled": true,
+            "update_debounce_ms": 150,
+            "padding": 4,
+            "min_column": 0,
+            "max_severity": null
+        },
+        "update_with_cursor": false,
+        "primary_only": false,
+        "use_rendered": false
+    },
+    "hard_tabs": false,
+    "hover_popover_delay": 300,
+    "inlay_hints": {
+        "enabled": true,
+        "show_type_hints": true,
+        "show_parameter_hints": true,
+        "show_other_hints": true,
+        "show_background": false,
+        "edit_debounce_ms": 700,
+        "scroll_debounce_ms": 50,
+        "toggle_on_modifiers_press": null
+    },
+    "search": {
+        "whole_word": false,
+        "case_sensitive": false,
+        "include_ignored": false,
+        "regex": false
+    },
+    "use_smartcase_search": true,
+    "show_completions_on_input": true,
+    "show_whitespaces": "selection",
+    "soft_wrap": "none",
+    "tab_size": 4,
+    "terminal": {
+        "alternate_scroll": "off",
+        "blinking": "on",
+        "shell": {
+            "with_arguments": {
+                "program": "C:\\Program Files\\Git\\bin\\bash.exe",
+                "args": ["--login"]
+            }
+        },
+        "copy_on_select": false,
+        "dock": "bottom",
+        "default_width": 640,
+        "default_height": 320,
+        "detect_venv": {
+            "on": {
+                "directories": [".env", "env", ".venv", "venv"],
+                "activate_script": "default"
+            }
+        },
+        "env": {},
+        "font_family": "Zed Plex Mono",
+        "font_features": null,
+        "font_size": null,
+        "line_height": "comfortable",
+        "option_as_meta": false,
+        "button": true,
+        "toolbar": {
+            "breadcrumbs": false
+        },
+        "working_directory": "current_project_directory",
+        "scrollbar": {
+            "show": null
+        }
+    },
+    "vim_mode": false,
+    "relative_line_numbers": true,
+    "project_panel": {
+        "button": true,
+        "default_width": 240,
+        "dock": "right",
+        "entry_spacing": "comfortable",
+        "file_icons": true,
+        "folder_icons": true,
+        "git_status": true,
+        "indent_size": 20,
+        "auto_reveal_entries": true,
+        "auto_fold_dirs": true,
+        "scrollbar": {
+            "show": null
+        },
+        "show_diagnostics": "all",
+        "indent_guides": {
+            "show": "always"
+        },
+        "hide_root": false
+    },
+    "outline_panel": {
+        "button": false,
+        "default_width": 250,
+        "dock": "left",
+        "file_icons": true,
+        "folder_icons": true,
+        "git_status": true,
+        "indent_size": 20,
+        "auto_reveal_entries": true,
+        "auto_fold_dirs": true,
+        "indent_guides": {
+            "show": "always"
+        },
+        "scrollbar": {
+            "show": null
+        }
     }
-  }
 }
