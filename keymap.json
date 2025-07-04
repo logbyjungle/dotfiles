@@ -472,7 +472,7 @@
             "ctrl-k ctrl-d": null, //["editor::SelectNext", { "replace_newest": true }], // editor.action.moveSelectionToNextFindMatch  / find_under_expand_skip
             "ctrl-k ctrl-shift-d": null, //[ "editor::SelectPrevious", { "replace_newest": true } ], // editor.action.moveSelectionToPreviousFindMatch
             "ctrl-k ctrl-i": null, // "editor::Hover",
-            "ctrl-#": [
+            "ctrl-\\": [
                 "editor::ToggleComments",
                 { "advance_downwards": false }
             ],
@@ -510,7 +510,6 @@
             "ctrl-.": null, // "editor::ToggleCodeActions",
             "ctrl-k r": null, // "editor::RevealInFileManager",
             "ctrl-k p": null, // "workspace::CopyPath",
-            "ctrl-\\": null, // "pane::SplitRight",
             "ctrl-k v": null, // "markdown::OpenPreviewToTheSide",
             "ctrl-shift-v": null, // "markdown::OpenPreview",
             "ctrl-alt-shift-c": null, // "editor::DisplayCursorNames",
