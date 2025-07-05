@@ -8,6 +8,7 @@
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
     "ui_font_size": 16,
+    "extend_comment_on_newline": false,
     "auto_install_extensions": {
         "catpuccin": true,
         "dracula": true,
