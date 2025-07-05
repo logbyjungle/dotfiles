@@ -1,0 +1,13 @@
+
+InlayHints:
+  ParameterNames: Yes
+  DeducedTypes: No
+Diagnostics:
+  UnusedIncludes: None
+  ClangTidy:
+    Add: [clang-analyzer-*, bugprone-*, cert-*, modernize-*, performance-*]
+    Remove: [
+      bugprone-easily-swappable-parameters,
+      modernize-use-trailing-return-type,
+      modernize-use-equals-default
+    ]
