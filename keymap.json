@@ -55,6 +55,7 @@
     {
         "context": "Editor && (vim_mode == insert || vim_mode == visual)", // "context": "Editor",
         "bindings": {
+            "enter": "editor::Newline",
             "escape": "editor::Cancel",
             "shift-backspace": "editor::Backspace",
             "backspace": "editor::Backspace",
@@ -139,7 +140,6 @@
         "context": "Editor && mode == full",
         "bindings": {
             "shift-enter": null, //  "editor::Newline",
-            "enter": "editor::Newline",
             "ctrl-enter": null, //  "editor::NewlineAbove",
             "ctrl-shift-enter": null, // "editor::NewlineBelow",
             "ctrl-k ctrl-z": null, //  "editor::ToggleSoftWrap",
