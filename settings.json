@@ -14,7 +14,7 @@
         "material-icon-theme": true,
         "tokyo-night": true
     },
-    "buffer_font_size": 14,
+    "buffer_font_size": 13,
     "theme": {
         "mode": "dark",
         "light": "One Light",
@@ -40,8 +40,8 @@
     "restore_on_startup": "last_session",
     "autoscroll_on_clicks": false,
     "auto_update": true,
-    "base_keymap": "None",
-    "buffer_font_family": "Zed Plex Mono",
+    "base_keymap": "VSCode",
+    "buffer_font_family": "JetBrainsMono Nerd Font Mono",
     "close_on_file_delete": false,
     "edit_predictions_disabled_in": ["comment", "string"],
     "current_line_highlight": "all",
@@ -71,11 +71,13 @@
     "lsp": {
         "clangd": {
             "binary": {
-                "path": "C:/msys64/ucrt64/bin/clangd.exe",
+                "path": "/usr/bin/clangd",
                 "arguments": [
                     "--clang-tidy",
                     "--background-index",
-                    "--pch-storage=memory"
+                    "--pch-storage=memory",
+                    "--header-insertion=never",
+                    "--diagnostic-disable=unused-includes"
                 ]
             }
         }
@@ -103,7 +105,7 @@
         "enabled": true,
         "show_type_hints": true,
         "show_parameter_hints": true,
-        "show_other_hints": true,
+        "show_other_hints": false,
         "show_background": false,
         "edit_debounce_ms": 700,
         "scroll_debounce_ms": 50,
@@ -125,7 +127,7 @@
         "blinking": "on",
         "shell": {
             "with_arguments": {
-                "program": "C:\\Program Files\\Git\\bin\\bash.exe",
+                "program": "/usr/bin/bash",
                 "args": ["--login"]
             }
         },
@@ -140,7 +142,7 @@
             }
         },
         "env": {},
-        "font_family": "Zed Plex Mono",
+        "font_family": "JetBrainsMono Nerd Font",
         "font_features": null,
         "font_size": null,
         "line_height": "comfortable",
@@ -154,7 +156,7 @@
             "show": null
         }
     },
-    "vim_mode": false,
+    "vim_mode": true,
     "relative_line_numbers": true,
     "project_panel": {
         "button": true,
