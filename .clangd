@@ -11,3 +11,5 @@ Diagnostics:
       modernize-use-trailing-return-type,
       modernize-use-equals-default
     ]
+CompileFlags:
+  Add: [-std=c++23 ]
