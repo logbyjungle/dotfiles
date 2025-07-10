@@ -1,4 +1,5 @@
 
+set -e
 clear
 
 if [ ! -f .clangd ]; then
@@ -35,4 +36,4 @@ start=$(date +%s%N)
 end=$(date +%s%N)
 echo "Run time: $(((end - start) / 1000000)) ms"
 
-gprof ./build/bitset gmon.out > result.txt
+gprof ./build/main gmon.out | c++filt > result.txt
