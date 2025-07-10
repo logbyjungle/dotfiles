@@ -25,6 +25,14 @@ add_compile_options(
   -Wswitch-enum
   -Wreturn-type
   -Wmissing-noreturn
+  -Wunreachable-code
+  -O3
+  -flto
+  -funroll-loops
+  -fsanitize=address # remove on final build
+  -fno-inline # remove on final build
+  -fno-omit-frame-pointer # remove on final build
+  -pg # remove on final build
 )
 
 add_executable(bitset bitset.cpp)
