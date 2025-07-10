@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.14)
-project(bitset_project CXX)
+project(project CXX)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 set(CMAKE_CXX_STANDARD 23)
@@ -35,4 +35,4 @@ add_compile_options(
   -pg # remove on final build
 )
 
-add_executable(bitset bitset.cpp)
+add_executable(main main.cpp)
