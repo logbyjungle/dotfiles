@@ -64,29 +64,74 @@ end,
 	})
     end,
 },
+
 {
-  'saghen/blink.cmp',
-  dependencies = { 'rafamadriz/friendly-snippets' },
-  version = '1.*',
-  opts = {
-    keymap = { preset = 'default' , ['<Tab>'] = { 'select_and_accept' }},
-    appearance = {
-      nerd_font_variant = 'mono'
-    },
-    completion = { documentation = { auto_show = false } },
-    sources = {
-      default = { 'lsp', 'path', 'snippets', 'buffer' },
-    },
-    fuzzy = { implementation = "prefer_rust_with_warning" }
+  "hrsh7th/nvim-cmp",
+  version = false,
+  event = "InsertEnter",
+  dependencies = {
+    "hrsh7th/cmp-nvim-lsp",
+    "hrsh7th/cmp-buffer",
+    "hrsh7th/cmp-path",
   },
-  opts_extend = { "sources.default" }
-},
-{
-  'nvimdev/indentmini.nvim',
-  config = function()
-      require("indentmini").setup() -- use default config
+  opts = function()
+    local cmp = require("cmp")
+    vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
+
+    local auto_select = true
+
+    return {
+      completion = {
+        completeopt = "menu,menuone,noinsert" .. (auto_select and "" or ",noselect"),
+      },
+      preselect = auto_select and cmp.PreselectMode.Item or cmp.PreselectMode.None,
+      mapping = cmp.mapping.preset.insert({
+        ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+        ["<C-f>"] = cmp.mapping.scroll_docs(4),
+        ["<Down>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+        ["<Up>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+        ["<C-Space>"] = cmp.mapping.complete(),
+        ["<CR>"] = cmp.mapping.confirm({ select = auto_select }),
+        ["<Tab>"] = cmp.mapping.confirm({ select = true }),
+        ["<S-CR>"] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace }),
+        ["<C-CR>"] = function(fallback)
+          cmp.abort()
+          fallback()
+        end,
+        ["<C-CR>"] = function(fallback)
+          -- fallback to next item, snippet jump, or default tab behavior
+          if cmp.visible() then
+            cmp.select_next_item()
+          else
+            fallback()
+          end
+        end,
+      }),
+      sources = cmp.config.sources({
+        { name = "nvim_lsp" },
+        { name = "path" },
+      }, {
+        { name = "buffer" },
+      }),
+      formatting = {
+        format = function(entry, item)
+          -- simple formatting, no LazyVim icons
+          return item
+        end,
+      },
+      experimental = {
+        ghost_text = false,
+      },
+    }
   end,
 },
+{
+    "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
+    ---@module "ibl"
+    ---@type ibl.config
+    opts = {},
+}
 })
 vim.cmd.colorscheme("catppuccin")
 
