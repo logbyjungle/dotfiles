@@ -13,27 +13,6 @@ vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
 {
-    "nvim-neo-tree/neo-tree.nvim",
-    branch = "v3.x",
-    dependencies = {
-        "nvim-lua/plenary.nvim",
-        "nvim-tree/nvim-web-devicons",
-        "MunifTanjim/nui.nvim",
-    },
-    lazy = false,
-    opts = {
-        position = "right",
-    },
-    filesystem = {
-        filtered_items = {
-            hide_dotfiles = false
-        },
-        always_show = {
-            ".env"
-        },
-    },
-},
-{
     "smolck/command-completion.nvim",
     config = function()
         require('command-completion').setup({
@@ -155,58 +134,65 @@ config = function()
     opts = {}
 },
 {
-  "danielfalk/smart-open.nvim",
-  branch = "0.2.x",
-  config = function()
-    require("telescope").load_extension("smart_open")
-  end,
-  dependencies = {
+    "danielfalk/smart-open.nvim",
+    branch = "0.2.x",
+    config = function()
+         require("telescope").load_extension("smart_open")
+    end,
+    dependencies = {
     "kkharji/sqlite.lua",
-    -- Only required if using match_algorithm fzf
     { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-    -- Optional.  If installed, native fzy will be used when match_algorithm is fzy
     { "nvim-telescope/telescope-fzy-native.nvim" },
     { "nvim-telescope/telescope.nvim"},
-  },
+    },
 },
 {
-  "mikavilpas/yazi.nvim",
-  event = "VeryLazy",
-  dependencies = {
+    "mikavilpas/yazi.nvim",
+    event = "VeryLazy",
+    dependencies = {
     { "nvim-lua/plenary.nvim", lazy = true },
-  },
-  keys = {
-    {
-      "<A-e>",
-      mode = { "n", "v" },
-      "<cmd>Yazi<cr>",
-      desc = "Open yazi at the current file",
     },
-  },
-  opts = {
+    keys = {
+    {
+        "<A-e>",
+        mode = { "n", "v" },
+        "<cmd>Yazi<cr>",
+        desc = "Open yazi at the current file",
+    },
+    },
+    opts = {
     open_for_directories = false,
     keymaps = {
-      show_help = "<f1>",
+        show_help = "<f1>",
+        },
     },
-  },
-  init = function()
+    init = function()
     vim.g.loaded_netrwPlugin = 1
-  end,
+    end,
 },
 {
-  "smjonas/live-command.nvim",
-  -- live-command supports semantic versioning via Git tags
-  -- tag = "2.*",
-  config = function()
-    require("live-command").setup()
-  end,
+    "smjonas/live-command.nvim",
+    config = function()
+        require("live-command").setup()
+    end,
 },
 {
-  "zeioth/garbage-day.nvim",
-  dependencies = "neovim/nvim-lspconfig",
-  event = "VeryLazy",
-  opts = {}
+    "zeioth/garbage-day.nvim",
+    dependencies = "neovim/nvim-lspconfig",
+    event = "VeryLazy",
+    opts = {}
 },
 })
 vim.cmd.colorscheme("catppuccin")
 
+vim.api.nvim_create_autocmd("VimEnter", {
+    callback = function()
+        local arg = vim.fn.argv(0)
+        if arg ~= nil and vim.fn.isdirectory(arg) == 1 then
+            vim.cmd("cd " .. vim.fn.fnameescape(arg))
+            vim.cmd("argdelete *")
+            vim.cmd("enew")
+            vim.cmd("Yazi")
+        end
+    end,
+})
