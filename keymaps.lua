@@ -53,6 +53,10 @@ vim.keymap.set("n", "<A-f>", function()
   require("telescope").extensions.smart_open.smart_open()
 end, { noremap = true, silent = true })
 
-
 vim.keymap.set('n', '<Esc>', ':noh<CR>', { silent = true })
 
+vim.keymap.set('n','<F5>',function()
+    if vim.fn.filereadable(vim.fn.expand('%:p:h') .. '/run.sh') == 1 then
+        vim.fn.jobstart({'kitty','--detach','sh','-c','cd "' .. vim.fn.expand('%:p:h') .. '" && ./run.sh; read -n 1 -s -r -p "Press any key to close"'}, {detach = true})
+    end
+end)
