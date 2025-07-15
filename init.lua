@@ -79,7 +79,6 @@ config = function()
             ["<Down>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
             ["<Up>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
             ["<C-Space>"] = cmp.mapping.complete(),
-            ["<CR>"] = cmp.mapping.confirm({ select = auto_select }),
             ["<Tab>"] = cmp.mapping.confirm({ select = true }),
             ["<S-CR>"] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace }),
             ["<C-CR>"] = function(fallback)
