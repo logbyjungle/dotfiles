@@ -1,0 +1,17 @@
+vim.wo.number = true
+vim.o.relativenumber = true
+vim.o.clipboard = 'unnamedplus'
+vim.o.linebreak = true
+vim.o.mouse = 'a'
+vim.o.autoindent = true
+vim.o.ignorecase = true
+vim.o.smartcase = true
+vim.o.completeopt = 'menuone,noselect'
+vim.o.conceallevel = 0
+vim.o.fileencoding = 'utf-8'
+vim.o.cursorline = true
+vim.o.wrap = false
+vim.opt.expandtab = true
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.softtabstop = 4
