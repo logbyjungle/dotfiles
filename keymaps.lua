@@ -55,3 +55,4 @@ end, { noremap = true, silent = true })
 
 
 vim.keymap.set('n', '<Esc>', ':noh<CR>', { silent = true })
+
