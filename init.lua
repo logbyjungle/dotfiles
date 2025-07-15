@@ -16,13 +16,13 @@ require('lazy').setup({
     "smolck/command-completion.nvim",
     config = function()
         require('command-completion').setup({
-            border = nil, 
-            max_col_num = 5, 
-            min_col_width = 20, 
-            use_matchfuzzy = true, 
-            highlight_selection = true, 
-            highlight_directories = true, 
-            tab_completion = true, 
+            border = nil,
+            max_col_num = 5,
+            min_col_width = 20,
+            use_matchfuzzy = true,
+            highlight_selection = true,
+            highlight_directories = true,
+            tab_completion = true,
         })
 	end,
 },
@@ -85,13 +85,6 @@ config = function()
             ["<C-CR>"] = function(fallback)
             cmp.abort()
             fallback()
-            end,
-            ["<C-CR>"] = function(fallback)
-                if cmp.visible() then
-                    cmp.select_next_item()
-                else
-                fallback()
-            end
         end,
         }),
         sources = cmp.config.sources({
@@ -177,10 +170,35 @@ config = function()
     end,
 },
 {
-    "zeioth/garbage-day.nvim",
-    dependencies = "neovim/nvim-lspconfig",
-    event = "VeryLazy",
-    opts = {}
+    "dundalek/lazy-lsp.nvim",
+    dependencies = {"neovim/nvim-lspconfig"},
+    config = function()
+        require("lazy-lsp").setup {
+            preferred_servers = {
+                lua = {
+                    settings = {
+                        Lua = {
+                            diagnostics = {
+                                globals = {"vim"},
+                            },
+                        },
+                    },
+                },
+                python = {
+                    "pyright",
+                    settings = {
+                        python = {
+                            analyst = {
+                                typeCheckingMode = "basic",
+                                reportMissingImports = true,
+                                diagnosticMode = "workspace"
+                            }
+                        }
+                    }
+               }
+            }
+        }
+    end
 },
 })
 vim.cmd.colorscheme("catppuccin")
@@ -195,4 +213,8 @@ vim.api.nvim_create_autocmd("VimEnter", {
             vim.cmd("Yazi")
         end
     end,
+})
+
+vim.diagnostic.config({
+    virtual_text = true
 })
