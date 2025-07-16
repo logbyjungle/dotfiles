@@ -1,0 +1,20 @@
+# remove .python from the name
+
+set -e
+clear
+
+#!/bin/bash
+
+if [ ! -d "venv" ]; then
+    echo "creating venv"
+    python3 -m venv venv
+fi
+
+source venv/bin/activate
+
+
+start=$(date +%s%N)
+venv/bin/python main.py
+end=$(date +%s%N)
+echo "Run time: $(((end - start) / 1000000)) ms"
+
