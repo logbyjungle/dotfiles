@@ -32,7 +32,7 @@ end=$(date +%s%N)
 echo "Compile time: $(((end - start) / 1000000)) ms"
 
 start=$(date +%s%N)
-./build/bitset
+./build/main
 end=$(date +%s%N)
 echo "Run time: $(((end - start) / 1000000)) ms"
 
