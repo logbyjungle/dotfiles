@@ -173,7 +173,18 @@ config = function()
     dependencies = {"neovim/nvim-lspconfig"},
     config = function()
         require("lazy-lsp").setup {
+            servers = {
+                "bashls",
+                "clangd",
+            },
+            excluded_servers = {
+                "glsls",
+            },
+            prefer_local = true,
             preferred_servers = {
+                glsl = {
+                    "glsl_analyzer",
+                },
                 lua = {
                     settings = {
                         Lua = {
@@ -199,6 +210,12 @@ config = function()
         }
     end
 },
+{
+  'numToStr/Comment.nvim',
+  config = function()
+    require('Comment').setup()
+  end
+},
 })
 vim.cmd.colorscheme("catppuccin")
 
@@ -216,4 +233,11 @@ vim.api.nvim_create_autocmd("VimEnter", {
 
 vim.diagnostic.config({
     virtual_text = true
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "*",
+  callback = function()
+    vim.opt_local.formatoptions:remove({ "r", "o" })
+  end
 })
