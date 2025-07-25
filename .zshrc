@@ -1,14 +1,10 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
-
-# Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time Oh My Zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+# ZSH_THEME="robbyrussell"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -71,12 +67,20 @@ ZSH_THEME="robbyrussell"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git
   zsh-autosuggestions
   zsh-syntax-highlighting		
 )
 
 source $ZSH/oh-my-zsh.sh
+
+LISTMAX=0
+HISTSIZE=5000
+SAVEHIST=$HISTSIZE
+HISTDUP=erase
+setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_dups
+setopt hist_find_no_dups
 
 # User configuration
 
@@ -113,9 +117,31 @@ alias ls='lsd --icon always --group-dirs first'
 
 export PATH=$PATH:/home/jungle/.local/bin
 
-eval "$(oh-my-posh init zsh --config "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/refs/heads/main/themes/rudolfs-dark.omp.json")"
+# eval "$(oh-my-posh init zsh --config "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/refs/heads/main/themes/catppuccin_mocha.omp.json")"
+eval "$(oh-my-posh init zsh --config ~/.oh-my-posh-catppuccin.omp.json)"
 
 alias path='pwd'
 alias spotify='LD_PRELOAD=/usr/local/lib/spotify-adblock.so spotify'
 alias exp='yazi'
 alias search='fzf'
+
+alias list='ps aux'
+
+alias fetch='fastfetch'
+
+alias end='pkill -f'
+
+export EDITOR=nvim
+
+export PATH="$HOME/.cargo/bin:$PATH"
+
+eval "$(zoxide init --cmd cd zsh)"
+
+clear
+
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+
+if [[ ~/.zshrc -nt ~/.zshrc.zwc ]]; then
+  zcompile ~/.zshrc
+fi
+
