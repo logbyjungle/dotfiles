@@ -239,6 +239,23 @@ config = function()
     ---@type render.md.UserConfig
     opts = {},
 },
+{
+    "linux-cultist/venv-selector.nvim",
+    dependencies = {
+    "neovim/nvim-lspconfig",
+    "mfussenegger/nvim-dap", "mfussenegger/nvim-dap-python", --optional
+    { "nvim-telescope/telescope.nvim", branch = "0.1.x", dependencies = { "nvim-lua/plenary.nvim" } },
+    },
+    lazy = false,
+    branch = "regexp", -- This is the regexp branch, use this for the new version
+    keys = {
+    { ",v", "<cmd>VenvSelect<cr>" },
+    },
+    ---@type venv-selector.Config
+    opts = {
+    -- Your settings go here
+    },
+},
 })
 vim.cmd.colorscheme("catppuccin")
 
@@ -264,3 +281,6 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.formatoptions:remove({ "r", "o" })
   end
 })
+
+
+vim.g.python3_host_prog = "/usr/bin/python3"
