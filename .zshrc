@@ -137,11 +137,18 @@ export PATH="$HOME/.cargo/bin:$PATH"
 
 eval "$(zoxide init --cmd cd zsh)"
 
-clear
-
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
 if [[ ~/.zshrc -nt ~/.zshrc.zwc ]]; then
   zcompile ~/.zshrc
 fi
 
+nvim() {
+    command nvim "$@"
+    tput cuu1
+    tput el
+}
+
+export VIRTUAL_ENV_DISABLE_PROMPT=0
+
+clear
