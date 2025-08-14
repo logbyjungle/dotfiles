@@ -26,17 +26,6 @@ require('lazy').setup({
         })
 	end,
 },
-{"nvim-treesitter/nvim-treesitter", branch = 'master', lazy = false, build = ":TSUpdate",
-config = function()
-    require'nvim-treesitter.configs'.setup {
-        highlight = {
-        enable = true,
-	    additional_vim_regex_highlighting = false
-        },
-        ensure_installed = { "cpp", "c","lua","vim","vimdoc","query","markdown","make","cmake","comment"},
-    }
-  end
-},
 { "catppuccin/nvim", name = "catppuccin", priority = 1000,
     config = function()
     require("catppuccin").setup({
@@ -49,7 +38,7 @@ config = function()
     build = ":TSUpdate",
     config = function()
     require("nvim-treesitter.configs").setup {
-          ensure_installed = { "python", "lua", "bash", "json", "cpp" },
+          ensure_installed = { "python", "lua", "bash", "json", "cpp" ,"c","vim","vimdoc","query","markdown","make","cmake","comment"},
           highlight = {
                 enable = true,
                 additional_vim_regex_highlighting = false,
@@ -133,10 +122,6 @@ config = function()
     config = function ()
         require'alpha'.setup(require'alpha.themes.startify'.config)
     end
-},
-{
-    "karb94/neoscroll.nvim",
-    opts = {}
 },
 {
     "danielfalk/smart-open.nvim",
@@ -283,4 +268,3 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 
-vim.g.python3_host_prog = "/usr/bin/python3"
