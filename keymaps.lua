@@ -46,11 +46,6 @@ vim.keymap.set('n', '<F1>', '<Nop>', { noremap = true })
 vim.keymap.set('i', '<F1>', '<Nop>', { noremap = true })
 vim.keymap.set('v', '<F1>', '<Nop>', { noremap = true })
 
-
-
-
-
-
 vim.keymap.set("n", "<A-f>", function()
   require("telescope").extensions.smart_open.smart_open()
 end, { noremap = true, silent = true })
@@ -89,3 +84,6 @@ vim.keymap.set("v", "<C-\\>", function()
 end, { noremap = true, silent = true })
 
 vim.keymap.set('n','<Tab>','>>')
+vim.keymap.set('n','<S-Tab>','<<')
+
+vim.keymap.set({'n', 'v'}, '<F3>', ':HopWord<CR>', { silent = true })
