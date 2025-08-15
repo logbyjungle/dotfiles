@@ -241,6 +241,13 @@ require('lazy').setup({
     -- Your settings go here
     },
 },
+{
+    'smoka7/hop.nvim',
+    version = "*",
+    opts = {
+        keys = 'etovxqpdygfblzhckisuran'
+    }
+},
 })
 vim.cmd.colorscheme("catppuccin")
 
@@ -266,5 +273,3 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.formatoptions:remove({ "r", "o" })
   end
 })
-
-
