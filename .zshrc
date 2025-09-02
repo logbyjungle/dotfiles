@@ -123,11 +123,14 @@ eval "$(oh-my-posh init zsh --config ~/.oh-my-posh-catppuccin.omp.json)"
 alias path='pwd'
 alias spotify='LD_PRELOAD=/usr/local/lib/spotify-adblock.so spotify'
 alias exp='yazi'
-alias search='fzf'
-
 alias list='ps aux'
 
 alias fetch='fastfetch'
+
+alias shutdown='systemctl poweroff'
+alias reboot='systemctl reboot'
+alias logout='hyprctl dispatch exit'
+alias sleep='systemctl suspend'
 
 alias end='pkill -f'
 
