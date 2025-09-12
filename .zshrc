@@ -121,7 +121,6 @@ export PATH=$PATH:/home/jungle/.local/bin
 eval "$(oh-my-posh init zsh --config ~/.oh-my-posh-catppuccin.omp.json)"
 
 alias path='pwd'
-alias spotify='LD_PRELOAD=/usr/local/lib/spotify-adblock.so spotify'
 alias exp='yazi'
 alias list='ps aux'
 
@@ -133,6 +132,8 @@ alias logout='hyprctl dispatch exit'
 alias sleep='systemctl suspend'
 
 alias end='pkill -f'
+
+alias c='clear'
 
 export EDITOR=nvim
 
