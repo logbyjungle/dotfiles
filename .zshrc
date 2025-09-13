@@ -135,6 +135,8 @@ alias end='pkill -f'
 
 alias c='clear'
 
+alias rm='rm -i'
+
 export EDITOR=nvim
 
 export PATH="$HOME/.cargo/bin:$PATH"
