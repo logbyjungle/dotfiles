@@ -82,6 +82,9 @@ setopt sharehistory
 setopt hist_ignore_dups
 setopt hist_find_no_dups
 
+setopt ignoreeof
+bindkey -r '^D'
+
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
