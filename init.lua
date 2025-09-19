@@ -160,12 +160,12 @@ require('lazy').setup({
     vim.g.loaded_netrwPlugin = 1
     end,
 },
-{
-    "smjonas/live-command.nvim",
-    config = function()
-        require("live-command").setup()
-    end,
-},
+-- {
+    -- "smjonas/live-command.nvim",
+    -- config = function()
+        -- require("live-command").setup()
+    -- end,
+-- },
 {
     "dundalek/lazy-lsp.nvim",
     dependencies = {"neovim/nvim-lspconfig"},
@@ -223,6 +223,25 @@ require('lazy').setup({
     ---@module 'render-markdown'
     ---@type render.md.UserConfig
     opts = {},
+    config = function()
+        require('render-markdown').setup({
+            html = {
+                enabled = false
+            },
+            latex = {
+                enabled = false
+            },
+            yaml = {
+                enabled = false
+            }
+        })
+    end
+},
+{
+    "lewis6991/gitsigns.nvim",
+    config = function()
+        require("gitsigns").setup()
+    end
 },
 {
     "linux-cultist/venv-selector.nvim",
