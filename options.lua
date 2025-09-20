@@ -18,3 +18,4 @@ vim.opt.softtabstop = 4
 vim.opt.signcolumn = "no"
 vim.g.python3_host_prog = "/usr/bin/python3"
 vim.o.signcolumn = 'yes'
+vim.opt.termguicolors = true
