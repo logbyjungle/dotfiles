@@ -15,26 +15,68 @@ vim.keymap.set('n', '<C-s>', '<cmd> w <CR>', opts)
 vim.keymap.set('n', '<C-q>', '<cmd> q <CR>', opts)
 
 -- Buffers
-vim.keymap.set('n', '<Tab>', ':bnext<CR>', opts)
-vim.keymap.set('n', '<S-Tab>', ':bprevious<CR>', opts)
+vim.keymap.set('n', '<C-Space><Tab>', ':bnext<CR>', opts)
+vim.keymap.set('n', '<C-Space><S-Tab>', ':bprevious<CR>', opts)
 -- vim.keymap.set('n', '<leader>x', ':Bdelete!<CR>', opts)   -- close buffer
 -- vim.keymap.set('n', '<leader>b', '<cmd> enew <CR>', opts) -- new buffer
 
+for i = 1, 9 do
+  vim.keymap.set("n", "<C-Space>" .. i, function()
+    vim.cmd("BufferLineGoToBuffer " .. i)
+  end, { desc = "Go to buffer " .. i })
+end
+
 -- Window management
--- vim.keymap.set('n', '<leader>v', '<C-w>v', opts)      -- split window vertically
-vim.keymap.set('n', '<leader>h', '<C-w>s', opts)      -- split window horizontally     
-vim.keymap.set('n', '<leader>xs', ':close<CR>', opts) -- close current split window
+vim.keymap.set('n', '<C-Space>l', '<C-w>v<C-w>l', opts)
+vim.keymap.set('n', '<C-Space>h', '<C-w>v', opts)
+vim.keymap.set('n', '<C-space>k', '<C-w>s', opts)
+vim.keymap.set('n', '<C-space>j', '<C-w>s<C-w>j', opts)
+vim.keymap.set('n', '<C-Space><C-l>', '<C-w>v<C-w>l', opts)
+vim.keymap.set('n', '<C-Space><C-h>', '<C-w>v', opts)
+vim.keymap.set('n', '<C-space><C-k>', '<C-w>s', opts)
+vim.keymap.set('n', '<C-space><C-j>', '<C-w>s<C-w>j', opts)
+
+vim.keymap.set('n', '<C-Space>t', function()
+  local wins = vim.api.nvim_tabpage_list_wins(0)
+  local listed_buffers = vim.fn.getbufinfo({ buflisted = 1 })
+  if #wins > 1 then
+    -- More than one split: close current split
+    vim.cmd('close')
+  else
+    -- Last split: close the buffer
+    vim.cmd('bdelete')
+    if #listed_buffers == 1 then
+        require('alpha').start(true)
+    end
+  end
+end, opts)
+
+
+vim.keymap.set('n', '<C-Space><C-t>', function()
+  local wins = vim.api.nvim_tabpage_list_wins(0)
+  local listed_buffers = vim.fn.getbufinfo({ buflisted = 1 })
+  if #wins > 1 then
+    -- More than one split: close current split
+    vim.cmd('close')
+  else
+    -- Last split: close the buffer
+    vim.cmd('bdelete')
+    if #listed_buffers == 1 then
+        require('alpha').start(true)
+    end
+  end
+end, opts)
 
 -- Navigate between splits
--- vim.keymap.set('n', '<C-k>', ':wincmd k<CR>', opts)
--- vim.keymap.set('n', '<C-j>', ':wincmd j<CR>', opts)
--- vim.keymap.set('n', '<C-h>', ':wincmd h<CR>', opts)
--- vim.keymap.set('n', '<C-l>', ':wincmd l<CR>', opts)
+vim.keymap.set('n', '<C-k>', ':wincmd k<CR>', opts)
+vim.keymap.set('n', '<C-j>', ':wincmd j<CR>', opts)
+vim.keymap.set('n', '<C-h>', ':wincmd h<CR>', opts)
+vim.keymap.set('n', '<C-l>', ':wincmd l<CR>', opts)
 -- Navigate between splits using Ctrl + Arrow Keys
--- vim.keymap.set('n', '<C-Up>',    '<C-w>k', opts)
--- vim.keymap.set('n', '<C-Down>',  '<C-w>j', opts)
--- vim.keymap.set('n', '<C-Left>',  '<C-w>h', opts)
--- vim.keymap.set('n', '<C-Right>', '<C-w>l', opts)
+vim.keymap.set('n', '<C-Up>',    '<C-w>k', opts)
+vim.keymap.set('n', '<C-Down>',  '<C-w>j', opts)
+vim.keymap.set('n', '<C-Left>',  '<C-w>h', opts)
+vim.keymap.set('n', '<C-Right>', '<C-w>l', opts)
 
 -- Tabs
 -- vim.keymap.set('n', '<leader>to', ':tabnew<CR>', opts)   -- open new tab
