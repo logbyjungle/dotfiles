@@ -44,7 +44,7 @@ vim.keymap.set('n', '<C-Space>t', function()
     vim.cmd('close')
   else
     -- Last split: close the buffer
-    vim.cmd('bdelete')
+    vim.cmd('bdelete!')
     if #listed_buffers == 1 then
         require('alpha').start(true)
     end
@@ -60,7 +60,7 @@ vim.keymap.set('n', '<C-Space><C-t>', function()
     vim.cmd('close')
   else
     -- Last split: close the buffer
-    vim.cmd('bdelete')
+    vim.cmd('bdelete!')
     if #listed_buffers == 1 then
         require('alpha').start(true)
     end
