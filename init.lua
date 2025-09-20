@@ -185,6 +185,7 @@ require('lazy').setup({
                     "glsl_analyzer",
                 },
                 lua = {
+                    -- "lua_ls",
                     settings = {
                         Lua = {
                             diagnostics = {
