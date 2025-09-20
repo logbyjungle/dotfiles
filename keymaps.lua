@@ -14,6 +14,10 @@ vim.keymap.set('n', '<C-s>', '<cmd> w <CR>', opts)
 -- quit file
 -- vim.keymap.set('n', '<C-q>', '<cmd> q <CR>', opts)
 
+-- Prevent Ctrl+Space from acting like "w"
+vim.keymap.set('n', '<C-Space>', '<Nop>', { noremap = true, silent = true })
+vim.keymap.set('n', '<Nul>', '<Nop>', { noremap = true, silent = true })
+
 -- Buffers
 vim.keymap.set('n', '<C-Space><Tab>', ':bnext<CR>', opts)
 vim.keymap.set('n', '<C-Space><S-Tab>', ':bprevious<CR>', opts)
@@ -153,3 +157,6 @@ vim.keymap.set('n','<Tab>','>>')
 vim.keymap.set('n','<S-Tab>','<<')
 
 vim.keymap.set({'n', 'v'}, '<F3>', ':HopWord<CR>', { silent = true })
+
+vim.keymap.set("n", "<C-CR>", "<cmd>FloatermToggle<CR>", { desc = "Toggle Floaterm" })
+vim.keymap.set("t", "<C-CR>", "<cmd>FloatermToggle<CR>", { desc = "Toggle Floaterm" })
