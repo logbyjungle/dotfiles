@@ -259,7 +259,7 @@ require('lazy').setup({
     },
     ---@type venv-selector.Config
     opts = {
-    -- Your settings go here
+        warn_when_search_is_slow = false
     },
 },
 {
@@ -269,13 +269,20 @@ require('lazy').setup({
         keys = 'qwertyuiopasdfghjklzxcvbnm'
     }
 },
+-- {
+    -- 'akinsho/bufferline.nvim',
+    -- version = "*",
+    -- dependencies = 'nvim-tree/nvim-web-devicons',
+    -- config = function()
+        -- require("bufferline").setup({})
+    -- end
+-- },
 {
-    'akinsho/bufferline.nvim',
-    version = "*",
-    dependencies = 'nvim-tree/nvim-web-devicons',
-    config = function()
-        require("bufferline").setup({})
-    end
+    'Yinameah/nvim-tabline',
+    dependencies = { 'nvim-tree/nvim-web-devicons' }, -- Optional
+    opts = {
+        show_index = true
+    }
 },
 {
     "okuuva/auto-save.nvim",
