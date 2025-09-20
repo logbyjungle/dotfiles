@@ -63,51 +63,34 @@ vim.keymap.set('n', '<C-Space><C-h>', '<C-w>v', opts)
 vim.keymap.set('n', '<C-space><C-k>', '<C-w>s', opts)
 vim.keymap.set('n', '<C-space><C-j>', '<C-w>s<C-w>j', opts)
 
-vim.keymap.set('n', '<C-Space>t', function()
+local function close_split_or_buffer()
+-- vim.keymap.set('n', '<C-Space>t', function()
   local wins = vim.api.nvim_tabpage_list_wins(0)
+  local bufnr = vim.api.nvim_get_current_buf()
   local listed_buffers = vim.fn.getbufinfo({ buflisted = 1 })
+
   if #wins > 1 then
     -- More than one split: close current split
     vim.cmd('close')
   else
-    -- Last split: close the buffer
-    vim.cmd('bdelete!')
-    if #listed_buffers == 1 then
+    -- Last split: only delete buffer if not shown elsewhere
+    local buf_windows = vim.fn.win_findbuf(bufnr)
+    if #buf_windows > 1 then
+      -- Buffer is open in other windows: just close current window
+      vim.cmd('close')
+    else
+      -- Buffer is only open here: delete it
+      vim.cmd('bdelete!')
+      if #listed_buffers == 1 then
         require('alpha').start(true)
+      end
     end
   end
-end, opts)
+end
 
-
-vim.keymap.set('n', '<C-Space><C-t>', function()
-  local wins = vim.api.nvim_tabpage_list_wins(0)
-  local listed_buffers = vim.fn.getbufinfo({ buflisted = 1 })
-  if #wins > 1 then
-    -- More than one split: close current split
-    vim.cmd('close')
-  else
-    -- Last split: close the buffer
-    vim.cmd('bdelete!')
-    if #listed_buffers == 1 then
-        require('alpha').start(true)
-    end
-  end
-end, opts)
-
-vim.keymap.set('n', '<C-q>', function()
-  local wins = vim.api.nvim_tabpage_list_wins(0)
-  local listed_buffers = vim.fn.getbufinfo({ buflisted = 1 })
-  if #wins > 1 then
-    -- More than one split: close current split
-    vim.cmd('close')
-  else
-    -- Last split: close the buffer
-    vim.cmd('bdelete!')
-    if #listed_buffers == 1 then
-        require('alpha').start(true)
-    end
-  end
-end, opts)
+vim.keymap.set('n', '<C-Space>t', close_split_or_buffer, opts)
+vim.keymap.set('n', '<C-Space><C-t>', close_split_or_buffer, opts)
+vim.keymap.set('n', '<C-q>', close_split_or_buffer, opts)
 
 -- Navigate between splits
 vim.keymap.set('n', '<C-k>', ':wincmd k<CR>', opts)
