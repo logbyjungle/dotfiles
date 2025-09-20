@@ -240,7 +240,9 @@ require('lazy').setup({
 {
     "lewis6991/gitsigns.nvim",
     config = function()
-        require("gitsigns").setup()
+        require("gitsigns").setup({
+            current_line_blame = true
+        })
     end
 },
 {
@@ -266,6 +268,14 @@ require('lazy').setup({
     opts = {
         keys = 'qwertyuiopasdfghjklzxcvbnm'
     }
+},
+{
+    'akinsho/bufferline.nvim',
+    version = "*",
+    dependencies = 'nvim-tree/nvim-web-devicons',
+    config = function()
+        require("bufferline").setup({})
+    end
 },
 })
 vim.cmd.colorscheme("catppuccin")
