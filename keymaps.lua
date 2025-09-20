@@ -15,19 +15,42 @@ vim.keymap.set('n', '<C-s>', '<cmd> w <CR>', opts)
 -- vim.keymap.set('n', '<C-q>', '<cmd> q <CR>', opts)
 
 -- Prevent Ctrl+Space from acting like "w"
-vim.keymap.set('n', '<C-Space>', '<Nop>', { noremap = true, silent = true })
-vim.keymap.set('n', '<Nul>', '<Nop>', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-Space>', '<Nop>', opts)
+vim.keymap.set('n', '<Nul>', '<Nop>', opts)
 
 -- Buffers
-vim.keymap.set('n', '<C-Space><Tab>', ':bnext<CR>', opts)
-vim.keymap.set('n', '<C-Space><S-Tab>', ':bprevious<CR>', opts)
+-- vim.keymap.set('n', '<C-Space><Tab>', ':bnext<CR>', opts)
+-- vim.keymap.set('n', '<C-Space><S-Tab>', ':bprevious<CR>', opts)
 -- vim.keymap.set('n', '<leader>x', ':Bdelete!<CR>', opts)   -- close buffer
 -- vim.keymap.set('n', '<leader>b', '<cmd> enew <CR>', opts) -- new buffer
 
+
+vim.keymap.set('n', '<C-Space><Tab>', '<Cmd>tabnext<CR>', opts)
+vim.keymap.set('n', '<C-Space><S-Tab>', '<Cmd>tabprevious<CR>', opts)
+
+
+-- for i = 1, 9 do
+  -- vim.keymap.set("n", "<C-Space>" .. i, function()
+    -- vim.cmd("BufferGoto " .. i)
+  -- end, { desc = "Go to tab" .. i })
+-- end
+
+
+-- Function to go to tab `n` or create tabs until it exists
+local function goto_or_create_tab(n)
+  local current_tabs = vim.fn.tabpagenr('$') -- total number of tabs
+  if current_tabs < n then
+    for _ = current_tabs, n-1 do
+      vim.cmd('tabnew') -- create new tab
+      require('alpha').start(true)
+    end
+  end
+  vim.cmd(n .. 'tabnext') -- go to tab `n`
+end
+
+-- Map <C-Space> + number (1-9)
 for i = 1, 9 do
-  vim.keymap.set("n", "<C-Space>" .. i, function()
-    vim.cmd("BufferLineGoToBuffer " .. i)
-  end, { desc = "Go to buffer " .. i })
+  vim.keymap.set('n', '<C-Space>' .. i, function() goto_or_create_tab(i) end, { noremap = true, silent = true })
 end
 
 -- Window management
