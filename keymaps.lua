@@ -12,7 +12,7 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set('n', '<C-s>', '<cmd> w <CR>', opts)
 
 -- quit file
-vim.keymap.set('n', '<C-q>', '<cmd> q <CR>', opts)
+-- vim.keymap.set('n', '<C-q>', '<cmd> q <CR>', opts)
 
 -- Buffers
 vim.keymap.set('n', '<C-Space><Tab>', ':bnext<CR>', opts)
@@ -53,6 +53,21 @@ end, opts)
 
 
 vim.keymap.set('n', '<C-Space><C-t>', function()
+  local wins = vim.api.nvim_tabpage_list_wins(0)
+  local listed_buffers = vim.fn.getbufinfo({ buflisted = 1 })
+  if #wins > 1 then
+    -- More than one split: close current split
+    vim.cmd('close')
+  else
+    -- Last split: close the buffer
+    vim.cmd('bdelete!')
+    if #listed_buffers == 1 then
+        require('alpha').start(true)
+    end
+  end
+end, opts)
+
+vim.keymap.set('n', '<C-q>', function()
   local wins = vim.api.nvim_tabpage_list_wins(0)
   local listed_buffers = vim.fn.getbufinfo({ buflisted = 1 })
   if #wins > 1 then
