@@ -241,7 +241,7 @@ require('lazy').setup({
     "lewis6991/gitsigns.nvim",
     config = function()
         require("gitsigns").setup({
-            current_line_blame = true
+            current_line_blame = false
         })
     end
 },
@@ -287,6 +287,9 @@ require('lazy').setup({
     -- or just leave it empty :)
     },
 },
+{
+    'voldikss/vim-floaterm'
+}
 })
 vim.cmd.colorscheme("catppuccin")
 
