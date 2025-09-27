@@ -38,7 +38,7 @@ require('lazy').setup({
     build = ":TSUpdate",
     config = function()
     require("nvim-treesitter.configs").setup {
-          ensure_installed = { "python", "lua", "bash", "json", "cpp" ,"c","vim","vimdoc","query","markdown","make","cmake","comment"},
+          ensure_installed = { "python", "lua", "bash", "json", "cpp" ,"c","vim","vimdoc","query","markdown","make","cmake","comment","dockerfile"},
           highlight = {
                 enable = true,
                 additional_vim_regex_highlighting = false,
@@ -174,6 +174,7 @@ require('lazy').setup({
             servers = {
                 "bashls",
                 "clangd",
+                "dockerls"
             },
             excluded_servers = {
                 "glsls",
@@ -181,6 +182,18 @@ require('lazy').setup({
             },
             prefer_local = true,
             preferred_servers = {
+                docker = {
+                    "dockerls",
+                    settings = {
+                        docker = {
+                            languageserver = {
+                                formatter = {
+                                    ignoreMultilineInstructions = true,
+                                },
+                            }
+                        }
+                    }
+                },
                 glsl = {
                     "glsl_analyzer",
                 },
@@ -297,6 +310,12 @@ require('lazy').setup({
 },
 {
     'voldikss/vim-floaterm'
+},
+{
+  "swaits/universal-clipboard.nvim",
+  opts = {
+    verbose = false, -- optional: set true to log detection details
+  },
 }
 })
 vim.cmd.colorscheme("catppuccin")
