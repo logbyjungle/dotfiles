@@ -58,52 +58,36 @@ require('lazy').setup({
     end,
 },
 {
-    "hrsh7th/nvim-cmp",
-    version = false,
-    event = "InsertEnter",
-    dependencies = {
-        "hrsh7th/cmp-nvim-lsp",
-        "hrsh7th/cmp-buffer",
-        "hrsh7th/cmp-path",
+    'saghen/blink.cmp',
+    dependencies = { 'rafamadriz/friendly-snippets' },
+    version = '1.*',
+    opts = {
+        keymap = { preset = 'default' },
+        appearance = {
+            -- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
+            -- Adjusts spacing to ensure icons are aligned
+            nerd_font_variant = 'mono'
+        },
+        completion = { 
+            documentation = { 
+                auto_show = false,
+            },
+            list = {
+                selection = {
+                    preselect = false,
+                    auto_insert = false,
+                }
+            }
+        },
+        sources = {
+            default = { 'lsp', 'path', 'snippets', 'buffer' },
+        },
+        fuzzy = { implementation = "prefer_rust_with_warning" },
+        keymap = {
+            ['<Tab>'] = {'accept','fallback'}
+        }
     },
-    opts = function()
-        local cmp = require("cmp")
-        vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
-        local auto_select = true
-        return {
-        completion = {
-            completeopt = "menu,menuone,noinsert" .. (auto_select and "" or ",noselect"),
-        },
-        preselect = auto_select and cmp.PreselectMode.Item or cmp.PreselectMode.None,
-        mapping = cmp.mapping.preset.insert({
-            ["<C-b>"] = cmp.mapping.scroll_docs(-4),
-            ["<C-f>"] = cmp.mapping.scroll_docs(4),
-            ["<Down>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-            ["<Up>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
-            ["<C-Space>"] = cmp.mapping.complete(),
-            ["<Tab>"] = cmp.mapping.confirm({ select = true }),
-            ["<S-CR>"] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace }),
-            ["<C-CR>"] = function(fallback)
-            cmp.abort()
-            fallback()
-        end,
-        }),
-        sources = cmp.config.sources({
-        { name = "nvim_lsp" },
-        { name = "path" },
-        }, {
-        { name = "buffer" },
-        }),
-        formatting = {
-            format = function(entry, item)
-            return item
-            end,
-        },
-        experimental = {
-            ghost_text = false,
-        },
-    }
-    end,
+    opts_extend = { "sources.default" }
 },
 {
     "lukas-reineke/indent-blankline.nvim",
@@ -316,7 +300,7 @@ require('lazy').setup({
   opts = {
     verbose = false, -- optional: set true to log detection details
   },
-}
+},
 })
 vim.cmd.colorscheme("catppuccin")
 
