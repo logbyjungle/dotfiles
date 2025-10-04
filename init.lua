@@ -135,10 +135,12 @@ require('lazy').setup({
     },
     },
     opts = {
-    open_for_directories = false,
-    keymaps = {
-        show_help = "<f1>",
+        open_for_directories = false,
+        keymaps = {
+            show_help = "<f1>",
         },
+        change_neovim_cwd_on_close = true,
+        floating_window_scaling_factor = 0.85,
     },
     init = function()
     vim.g.loaded_netrwPlugin = 1
@@ -239,7 +241,7 @@ require('lazy').setup({
     "lewis6991/gitsigns.nvim",
     config = function()
         require("gitsigns").setup({
-            current_line_blame = false
+            current_line_blame = true
         })
     end
 },
@@ -257,7 +259,11 @@ require('lazy').setup({
     },
     ---@type venv-selector.Config
     opts = {
-        warn_when_search_is_slow = false
+        search = {
+            cwd = {
+              command = "fd '/bin/python$' ~/ook/programming/ --full-path --color never -E /proc -I -a -L",
+            },
+        },
     },
 },
 {
