@@ -164,5 +164,5 @@ vim.keymap.set('n','<S-Tab>','<<')
 
 vim.keymap.set({'n', 'v'}, '<F3>', ':HopWord<CR>', { silent = true })
 
-vim.keymap.set("n", "<C-CR>", "<cmd>FloatermToggle<CR>", { desc = "Toggle Floaterm" })
-vim.keymap.set("t", "<C-CR>", "<cmd>FloatermToggle<CR>", { desc = "Toggle Floaterm" })
+vim.keymap.set("n", "<C-Space><CR>", "<cmd>FloatermToggle<CR>", { desc = "Toggle Floaterm" })
+vim.keymap.set("t", "<C-Space><CR>", "<cmd>FloatermToggle<CR>", { desc = "Toggle Floaterm" })
