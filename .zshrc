@@ -67,8 +67,10 @@ export ZSH="$HOME/.oh-my-zsh"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  zsh-autosuggestions
-  zsh-syntax-highlighting		
+    zsh-autosuggestions
+    zsh-syntax-highlighting		
+    history-substring-search
+    zsh-lazyload
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -124,7 +126,16 @@ export PATH=$PATH:/home/jungle/.local/bin
 eval "$(oh-my-posh init zsh --config ~/.oh-my-posh-catppuccin.omp.json)"
 
 alias path='pwd'
-alias exp='yazi'
+
+export JAVAFX_HOME=/opt/javafx/javafx-sdk-25
+
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	IFS= read -r -d '' cwd < "$tmp"
+	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+	rm -f -- "$tmp"
+}
 alias list='ps aux'
 
 alias fetch='fastfetch'
@@ -161,3 +172,5 @@ nvim() {
 export VIRTUAL_ENV_DISABLE_PROMPT=0
 
 clear
+
+. "/home/jungle/.deno/env"
