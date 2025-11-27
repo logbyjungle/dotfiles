@@ -301,12 +301,34 @@ require('lazy').setup({
 {
     'voldikss/vim-floaterm'
 },
+-- {
+  -- "swaits/universal-clipboard.nvim",
+  -- opts = {
+    -- verbose = false, -- optional: set true to log detection details
+  -- },
+-- },
 {
-  "swaits/universal-clipboard.nvim",
-  opts = {
-    verbose = false, -- optional: set true to log detection details
-  },
+    'stevearc/conform.nvim',
+    opts = {},
+    config = function()
+        require("conform").setup({
+            formatters_by_ft = {
+            python = { "isort", "black" },
+            rust = { "rustfmt", lsp_format = "fallback" },
+            javascript = { "prettierd", "prettier", stop_after_first = true },
+            css = {"prettier"},
+            html = {"prettier"},
+            },
+        })
+        vim.api.nvim_create_user_command("Format", function()
+          require("conform").format({
+            async = true,
+            lsp_fallback = true,
+          })
+        end, {})
+    end
 },
+
 })
 vim.cmd.colorscheme("catppuccin")
 
@@ -332,3 +354,18 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.formatoptions:remove({ "r", "o" })
   end
 })
+
+vim.api.nvim_set_hl(0, "TabLineSeparatorSel", { fg = "#89b4fb", bg = "none" }) -- 
+
+local lazierPath = vim.fn.stdpath("data") .. "/lazier/lazier.nvim"
+if not (vim.uv or vim.loop).fs_stat(lazierPath) then
+    local repo = "https://github.com/jake-stewart/lazier.nvim.git"
+    local out = vim.fn.system({
+        "git", "clone", "--branch=stable-v2", repo, lazierPath })
+    if vim.v.shell_error ~= 0 then
+        vim.api.nvim_echo({{
+            "Failed to clone lazier.nvim:\n" .. out, "Error"
+        }}, true, {})
+    end
+end
+vim.opt.runtimepath:prepend(lazierPath)
