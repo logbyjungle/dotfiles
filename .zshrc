@@ -70,7 +70,6 @@ plugins=(
     zsh-autosuggestions
     zsh-syntax-highlighting		
     history-substring-search
-    zsh-lazyload
 )
 
 source $ZSH/oh-my-zsh.sh
