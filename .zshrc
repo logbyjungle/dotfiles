@@ -70,6 +70,8 @@ plugins=(
     zsh-autosuggestions
     zsh-syntax-highlighting		
     history-substring-search
+    gitfast
+    zsh-interactive-cd
 )
 
 source $ZSH/oh-my-zsh.sh
