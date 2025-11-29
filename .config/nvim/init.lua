@@ -62,14 +62,11 @@ require('lazy').setup({
     dependencies = { 'rafamadriz/friendly-snippets' },
     version = '1.*',
     opts = {
-        keymap = { preset = 'default' },
         appearance = {
-            -- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
-            -- Adjusts spacing to ensure icons are aligned
             nerd_font_variant = 'mono'
         },
-        completion = { 
-            documentation = { 
+        completion = {
+            documentation = {
                 auto_show = false,
             },
             list = {
@@ -120,8 +117,10 @@ require('lazy').setup({
     { "nvim-telescope/telescope.nvim"},
     },
 },
+---@type LazySpec
 {
     "mikavilpas/yazi.nvim",
+    version = "*",
     event = "VeryLazy",
     dependencies = {
     { "nvim-lua/plenary.nvim", lazy = true },
@@ -134,6 +133,7 @@ require('lazy').setup({
         desc = "Open yazi at the current file",
     },
     },
+    ---@type YaziConfig | {}
     opts = {
         open_for_directories = false,
         keymaps = {
@@ -141,33 +141,45 @@ require('lazy').setup({
         },
         change_neovim_cwd_on_close = true,
         floating_window_scaling_factor = 0.85,
+        future_features = {
+          use_cwd_file = true,
+          new_shell_escaping = true,
+        },
     },
     init = function()
-    vim.g.loaded_netrwPlugin = 1
+        vim.g.loaded_netrwPlugin = 1
     end,
 },
--- {
-    -- "smjonas/live-command.nvim",
-    -- config = function()
-        -- require("live-command").setup()
-    -- end,
--- },
+{
+    "smjonas/live-command.nvim",
+    config = function()
+        require("live-command").setup()
+    end,
+},
 {
     "dundalek/lazy-lsp.nvim",
     dependencies = {"neovim/nvim-lspconfig"},
     config = function()
         require("lazy-lsp").setup {
+            use_vim_lsp_config = true,
             servers = {
+                "lua_ls",
                 "bashls",
                 "clangd",
                 "dockerls"
             },
             excluded_servers = {
                 "glsls",
-                "ltex"
+                "ltex",
+                "jedi_language_server",
+                "basedpyright",
+                "pylyzer",
+                "pylsp",
+                "ruff",
+                "tailwindcss",
             },
             prefer_local = true,
-            preferred_servers = {
+            vim.lsp.config("*",{
                 docker = {
                     "dockerls",
                     settings = {
@@ -184,7 +196,7 @@ require('lazy').setup({
                     "glsl_analyzer",
                 },
                 lua = {
-                    -- "lua_ls",
+                    "lua_ls",
                     settings = {
                         Lua = {
                             diagnostics = {
@@ -205,7 +217,7 @@ require('lazy').setup({
                         }
                     }
                }
-            }
+            })
         }
     end
 },
@@ -217,9 +229,7 @@ require('lazy').setup({
 },
 {
     'MeanderingProgrammer/render-markdown.nvim',
-    dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' }, -- if you use the mini.nvim suite
-    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons' }, -- if you use standalone mini plugins
-    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+    dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.nvim' },
     ---@module 'render-markdown'
     ---@type render.md.UserConfig
     opts = {},
@@ -249,11 +259,9 @@ require('lazy').setup({
     "linux-cultist/venv-selector.nvim",
     dependencies = {
     "neovim/nvim-lspconfig",
-    "mfussenegger/nvim-dap", "mfussenegger/nvim-dap-python", --optional
     { "nvim-telescope/telescope.nvim", branch = "0.1.x", dependencies = { "nvim-lua/plenary.nvim" } },
     },
-    lazy = false,
-    branch = "regexp", -- This is the regexp branch, use this for the new version
+    ft = "python",
     keys = {
     { ",v", "<cmd>VenvSelect<cr>" },
     },
@@ -273,14 +281,6 @@ require('lazy').setup({
         keys = 'qwertyuiopasdfghjklzxcvbnm'
     }
 },
--- {
-    -- 'akinsho/bufferline.nvim',
-    -- version = "*",
-    -- dependencies = 'nvim-tree/nvim-web-devicons',
-    -- config = function()
-        -- require("bufferline").setup({})
-    -- end
--- },
 {
     'Yinameah/nvim-tabline',
     dependencies = { 'nvim-tree/nvim-web-devicons' }, -- Optional
@@ -291,22 +291,12 @@ require('lazy').setup({
 {
     "okuuva/auto-save.nvim",
     version = '*',
-    cmd = "ASToggle", -- optional for lazy loading on command
-    event = { "InsertLeave", "TextChanged" }, -- optional for lazy loading on trigger events
-    opts = {
-    -- your config goes here
-    -- or just leave it empty :)
-    },
+    cmd = "ASToggle",
+    event = { "InsertLeave", "TextChanged" },
 },
 {
     'voldikss/vim-floaterm'
 },
--- {
-  -- "swaits/universal-clipboard.nvim",
-  -- opts = {
-    -- verbose = false, -- optional: set true to log detection details
-  -- },
--- },
 {
     'stevearc/conform.nvim',
     opts = {},
@@ -332,6 +322,13 @@ require('lazy').setup({
 })
 vim.cmd.colorscheme("catppuccin")
 
+vim.diagnostic.config({
+    virtual_lines = {
+        current_line = true
+    },
+    -- virtual_text = true -- single line error
+})
+
 vim.api.nvim_create_autocmd("VimEnter", {
     callback = function()
         local arg = vim.fn.argv(0)
@@ -342,10 +339,6 @@ vim.api.nvim_create_autocmd("VimEnter", {
             vim.cmd("Yazi")
         end
     end,
-})
-
-vim.diagnostic.config({
-    virtual_text = true
 })
 
 vim.api.nvim_create_autocmd("FileType", {
