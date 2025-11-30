@@ -166,7 +166,8 @@ require('lazy').setup({
                 "lua_ls",
                 "bashls",
                 "clangd",
-                "dockerls"
+                "dockerls",
+                "rust_analyzer",
             },
             excluded_servers = {
                 "glsls",
@@ -180,8 +181,7 @@ require('lazy').setup({
             },
             prefer_local = true,
             vim.lsp.config("*",{
-                docker = {
-                    "dockerls",
+                dockerls = {
                     settings = {
                         docker = {
                             languageserver = {
@@ -192,11 +192,7 @@ require('lazy').setup({
                         }
                     }
                 },
-                glsl = {
-                    "glsl_analyzer",
-                },
-                lua = {
-                    "lua_ls",
+                lua_ls = {
                     settings = {
                         Lua = {
                             diagnostics = {
@@ -205,8 +201,7 @@ require('lazy').setup({
                         },
                     },
                 },
-                python = {
-                    "pyright",
+                pyright = {
                     settings = {
                         python = {
                             analyst = {
@@ -216,7 +211,25 @@ require('lazy').setup({
                             }
                         }
                     }
-               }
+                },
+                rust_analyzer = {
+                    settings = {
+                        ['rust-analyzer'] = {
+                            cargo = {
+                                allFeatures = true,
+                            },
+                            diagnostics = {
+                                enable = true,
+                                disabled = {},
+                                enableExperimental = true,
+                            },
+                            checkOnSave = {
+                                command = "clippy",
+                            },
+                            diagnosticMode = "openFiles"
+                        },
+                    }
+                }
             })
         }
     end
@@ -293,6 +306,10 @@ require('lazy').setup({
     version = '*',
     cmd = "ASToggle",
     event = { "InsertLeave", "TextChanged" },
+    opts = {
+        enabled = true,
+        debounce_delay = 100,
+    }
 },
 {
     'voldikss/vim-floaterm'
