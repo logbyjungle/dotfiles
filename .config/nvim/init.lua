@@ -335,6 +335,77 @@ require('lazy').setup({
         end, {})
     end
 },
+{
+	"tversteeg/registers.nvim",
+	cmd = "Registers",
+	keys = {
+		{ "\"",    mode = { "n", "v" } },
+		{ "<C-R>", mode = "i" }
+	},
+	name = "registers",
+    config = function()
+        local registers = require("registers")
+        registers.setup({
+        -- show = "*+\"-/_=#%.0123456789abcdefghijklmnopqrstuvwxyz:",
+        show = "*+\"_0123456789abcdefghijklmnopqrstuvwxyz",
+        show_empty = false,
+        register_user_command = true,
+        system_clipboard = true,
+        trim_whitespace = false,
+        hide_only_whitespace = true,
+        show_register_types = true,
+        bind_keys = {
+            normal    = registers.show_window({ mode = "motion" }),
+            visual    = registers.show_window({ mode = "motion" }),
+            insert    = registers.show_window({ mode = "insert" }),
+
+            registers = registers.apply_register({ delay = 0.0 }),
+            ["<CR>"]  = registers.apply_register(),
+            ["<Esc>"] = registers.close_window(),
+
+            ["<C-n>"] = registers.move_cursor_down(),
+            ["<C-p>"] = registers.move_cursor_up(),
+            ["<C-j>"] = registers.move_cursor_down(),
+            ["<C-k>"] = registers.move_cursor_up(),
+        },
+        events = {
+            on_register_highlighted = registers.preview_highlighted_register({ if_mode = { "insert", "paste" } }),
+        },
+        symbols = {
+            newline = "⏎",
+            space = " ",
+            tab = "·",
+            register_type_charwise = "",
+            register_type_linewise = "",
+            register_type_blockwise = "",
+        },
+        window = {
+            max_width = 100,
+            highlight_cursorline = true,
+            border = "rounded",
+            transparency = 15,
+        },
+        sign_highlights = {
+            cursorlinesign = "CursorLine",
+            signcolumn = "SignColumn",
+            cursorline = "Visual",
+            selection = "Constant",
+            default = "Function",
+            unnamed = "Statement",
+            read_only = "Type",
+            expression = "Exception",
+            black_hole = "Error",
+            alternate_buffer = "Operator",
+            last_search = "Tag",
+            delete = "Special",
+            yank = "Delimiter",
+            history = "Number",
+            named = "Todo",
+        },
+        })
+    end,
+}
+
 
 })
 vim.cmd.colorscheme("catppuccin")

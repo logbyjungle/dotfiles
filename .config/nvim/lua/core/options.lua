@@ -21,3 +21,4 @@ vim.o.signcolumn = 'yes'
 vim.opt.termguicolors = true
 vim.g.floaterm_title = ""
 vim.g.floaterm_autoinsert = 1
+vim.opt.synmaxcol = 500
