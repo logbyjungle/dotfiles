@@ -119,7 +119,26 @@ bindkey -r '^D'
 
 unsetopt CHECK_JOBS
 
-alias ls='lsd --icon always --group-dirs first'
+unalias ls 2>/dev/null
+
+ls() {
+  local d="$PWD"
+  local in_git=1
+
+  while [[ "$d" != "/" ]]; do
+    if [[ -d "$d/.git" ]]; then
+      in_git=0
+      break
+    fi
+    d="${d:h}"
+  done
+
+  if [[ $in_git -eq 0 ]]; then
+    command lsd -A --icon always --group-dirs first "$@"
+  else
+    command lsd --icon always --group-dirs first "$@"
+  fi
+}
 
 export PATH=$PATH:/home/jungle/.local/bin
 
